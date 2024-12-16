@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap");
-
 *,
 *:before,
 *:after {
@@ -12,7 +11,6 @@
   --c-grey-300: #b2b2b2;
   --c-grey-400: #7b7b7b;
   --c-grey-500: #3d3d3d;
-
   --c-blue-500: #688afd;
 }
 
@@ -35,12 +33,13 @@ textarea {
 a {
   color: inherit;
 }
+
 img {
   display: block;
   max-width: 100%;
 }
-/* End basic CSS override */
 
+/* End basic CSS override */
 .timeline {
   width: 85%;
   max-width: 700px;
@@ -56,32 +55,37 @@ img {
 .timeline-item {
   display: flex;
   gap: 24px;
-  & + * {
-    margin-top: 24px;
-  }
-  & + .extra-space {
-    margin-top: 48px;
-  }
+}
+.timeline-item + * {
+  margin-top: 24px;
+}
+.timeline-item + .extra-space {
+  margin-top: 48px;
 }
 
 .new-comment {
   width: 100%;
-  input {
-    border: 1px solid var(--c-grey-200);
-    border-radius: 6px;
-    height: 48px;
-    padding: 0 16px;
-    width: 100%;
-    &::placeholder {
-      color: var(--c-grey-300);
-    }
-
-    &:focus {
-      border-color: var(--c-grey-300);
-      outline: 0; // Don't actually do this
-      box-shadow: 0 0 0 4px var(--c-grey-100);
-    }
-  }
+}
+.new-comment input {
+  border: 1px solid var(--c-grey-200);
+  border-radius: 6px;
+  height: 48px;
+  padding: 0 16px;
+  width: 100%;
+}
+.new-comment input::-moz-placeholder {
+  color: var(--c-grey-300);
+}
+.new-comment input:-ms-input-placeholder {
+  color: var(--c-grey-300);
+}
+.new-comment input::placeholder {
+  color: var(--c-grey-300);
+}
+.new-comment input:focus {
+  border-color: var(--c-grey-300);
+  outline: 0;
+  box-shadow: 0 0 0 4px var(--c-grey-100);
 }
 
 .timeline-item-icon {
@@ -95,20 +99,18 @@ img {
   flex-shrink: 0;
   overflow: hidden;
   box-shadow: 0 0 0 6px #fff;
-  svg {
-    width: 20px;
-    height: 20px;
-  }
-
-  &.faded-icon {
-    background-color: var(--c-grey-100);
-    color: var(--c-grey-400);
-  }
-
-  &.filled-icon {
-    background-color: var(--c-blue-500);
-    color: #fff;
-  }
+}
+.timeline-item-icon svg {
+  width: 20px;
+  height: 20px;
+}
+.timeline-item-icon.faded-icon {
+  background-color: var(--c-grey-100);
+  color: var(--c-grey-400);
+}
+.timeline-item-icon.filled-icon {
+  background-color: var(--c-blue-500);
+  color: #fff;
 }
 
 .timeline-item-description {
@@ -116,20 +118,18 @@ img {
   padding-top: 6px;
   gap: 8px;
   color: var(--c-grey-400);
-
-  img {
-    flex-shrink: 0;
-  }
-  a {
-    color: var(--c-grey-500);
-    font-weight: 500;
-    text-decoration: none;
-    &:hover,
-    &:focus {
-      outline: 0; // Don't actually do this
-      color: var(--c-blue-500);
-    }
-  }
+}
+.timeline-item-description img {
+  flex-shrink: 0;
+}
+.timeline-item-description a {
+  color: var(--c-grey-500);
+  font-weight: 500;
+  text-decoration: none;
+}
+.timeline-item-description a:hover, .timeline-item-description a:focus {
+  outline: 0;
+  color: var(--c-blue-500);
 }
 
 .avatar {
@@ -138,18 +138,18 @@ img {
   justify-content: center;
   border-radius: 50%;
   overflow: hidden;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 1/1;
   flex-shrink: 0;
   width: 40px;
   height: 40px;
-  &.small {
-    width: 28px;
-    height: 28px;
-  }
-
-  img {
-    object-fit: cover;
-  }
+}
+.avatar.small {
+  width: 28px;
+  height: 28px;
+}
+.avatar img {
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .comment {
@@ -178,27 +178,24 @@ img {
   flex-shrink: 0;
   cursor: pointer;
   border-radius: 99em;
-
-  &:hover {
-    background-color: var(--c-grey-200);
-  }
-
-  &.square {
-    border-radius: 50%;
-    color: var(--c-grey-400);
-    width: 32px;
-    height: 32px;
-    padding: 0;
-    svg {
-      width: 24px;
-      height: 24px;
-    }
-
-    &:hover {
-      background-color: var(--c-grey-200);
-      color: var(--c-grey-500);
-    }
-  }
+}
+.button:hover {
+  background-color: var(--c-grey-200);
+}
+.button.square {
+  border-radius: 50%;
+  color: var(--c-grey-400);
+  width: 32px;
+  height: 32px;
+  padding: 0;
+}
+.button.square svg {
+  width: 24px;
+  height: 24px;
+}
+.button.square:hover {
+  background-color: var(--c-grey-200);
+  color: var(--c-grey-500);
 }
 
 .show-replies {
@@ -212,24 +209,22 @@ img {
   gap: 6px;
   font-size: 1rem;
   cursor: pointer;
-  svg {
-    flex-shrink: 0;
-    width: 24px;
-    height: 24px;
-  }
-
-  &:hover,
-  &:focus {
-    color: var(--c-grey-500);
-  }
+}
+.show-replies svg {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+}
+.show-replies:hover, .show-replies:focus {
+  color: var(--c-grey-500);
 }
 
 .avatar-list {
   display: flex;
   align-items: center;
-  & > * {
-    position: relative;
-    box-shadow: 0 0 0 2px #fff;
-    margin-right: -8px;
-  }
+}
+.avatar-list > * {
+  position: relative;
+  box-shadow: 0 0 0 2px #fff;
+  margin-right: -8px;
 }
