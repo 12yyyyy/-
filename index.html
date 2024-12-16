@@ -1,117 +1,82 @@
-<header>
-    <h1>SCSS Animation Timeline Mixins </h1>
-    <p>Create time based CSS animations (not percentages)</p>
-    <div class="hearts">
-        <span>
-            <i>💜💜💜</i>
-            <i>❤️❤️❤️</i>
-            <i>🧡🧡🧡</i>
-            <i>💛💛💛</i>
-            <i>💚💚💚</i>
-            <i>💙💙💙</i>
-            <i>💜💜💜</i> 
+<ol class="timeline">
+  <li class="timeline-item">
+    <span class="timeline-item-icon | avatar-icon">
+      <i class="avatar">
+        <img src="https://assets.codepen.io/285131/hat-man.png" />
+      </i>
+    </span>
+    <div class="new-comment">
+      <input type="text" placeholder="Add a comment..." />
+    </div>
+  </li>
+  <li class="timeline-item">
+    <span class="timeline-item-icon | faded-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+        <path fill="none" d="M0 0h24v24H0z" />
+        <path fill="currentColor" d="M12.9 6.858l4.242 4.243L7.242 21H3v-4.243l9.9-9.9zm1.414-1.414l2.121-2.122a1 1 0 0 1 1.414 0l2.829 2.829a1 1 0 0 1 0 1.414l-2.122 2.121-4.242-4.242z" />
+      </svg>
+    </span>
+    <div class="timeline-item-description">
+      <i class="avatar | small">
+        <img src="https://assets.codepen.io/285131/winking-girl.png" />
+      </i>
+      <span><a href="#">Luna Bonifacio</a> has changed <a href="#">2 attributes</a> on <time datetime="21-01-2021">Jan 21, 2021</time></span>
+    </div>
+  </li>
+  <li class="timeline-item">
+    <span class="timeline-item-icon | faded-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+        <path fill="none" d="M0 0h24v24H0z" />
+        <path fill="currentColor" d="M12 13H4v-2h8V4l8 8-8 8z" />
+      </svg>
+    </span>
+    <div class="timeline-item-description">
+      <i class="avatar | small">
+        <img src="https://assets.codepen.io/285131/hat-man.png" />
+      </i>
+      <span><a href="#">Yoan Almedia</a> moved <a href="#">Eric Lubin</a> to <a href="#">📚 Technical Test</a> on <time datetime="20-01-2021">Jan 20, 2021</time></span>
+    </div>
+  </li>
+  <li class="timeline-item | extra-space">
+    <span class="timeline-item-icon | filled-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+        <path fill="none" d="M0 0h24v24H0z" />
+        <path fill="currentColor" d="M6.455 19L2 22.5V4a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H6.455zM7 10v2h2v-2H7zm4 0v2h2v-2h-2zm4 0v2h2v-2h-2z" />
+      </svg>
+    </span>
+    <div class="timeline-item-wrapper">
+      <div class="timeline-item-description">
+        <i class="avatar | small">
+          <img src="https://assets.codepen.io/285131/hat-man.png" />
+        </i>
+        <span><a href="#">Yoan Almedia</a> commented on <time datetime="20-01-2021">Jan 20, 2021</time></span>
+      </div>
+      <div class="comment">
+        <p>I've sent him the assignment we discussed recently, he is coming back to us this week. Regarding to our last call, I really enjoyed talking to him and so far he has the profile we are looking for. Can't wait to see his technical test, I'll keep you posted and we'll debrief it all together!😊</p>
+        <button class="button">👏 2</button>
+        <button class="button | square">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="none" d="M0 0h24v24H0z" />
+            <path fill="currentColor" d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zM7 12a5 5 0 0 0 10 0h-2a3 3 0 0 1-6 0H7z" />
+          </svg>
+        </button>
+      </div>
+      <button class="show-replies">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-forward" width="44" height="44" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M15 11l4 4l-4 4m4 -4h-11a4 4 0 0 1 0 -8h1" />
+        </svg>
+        Show 3 replies
+        <span class="avatar-list">
+          <i class="avatar | small">
+            <img src="https://assets.codepen.io/285131/hat-man.png" />
+          </i>
+          <i class="avatar | small">
+            <img src="https://assets.codepen.io/285131/winking-girl.png" />
+          </i> <i class="avatar | small">
+            <img src="https://assets.codepen.io/285131/smiling-girl.png" />
+          </i>
         </span>
-    </div>     
-</header>
-<pre>
-<strong>SCSS</strong>
-body {
-    @include animation-timeline {
-        animation-iteration-count: infinite;
-        animation-fill-mode: forwards;
-        
-        @include tween(0s, (background-color: blueviolet, color: blueviolet));        
-        @include tween(3s, (background-color: red, color: red));
-        @include tween(3s, (background-color: orange, color: orange));
-        @include tween(3s, (background-color: gold, color: gold));
-        @include tween(3s, (background-color: green, color: green));
-        @include tween(3s, (background-color: blue, color: blue));
-        @include tween(3s, (background-color: blueviolet, color: blueviolet));
-    }
-}
-</pre>
-<pre>
-<strong>CSS</strong>
-body {
-    animation-iteration-count: infinite;
-    animation-fill-mode: forwards;
-    animation-name: u33q65pnv;
-    animation-duration: 21s;
-}
-
-@keyframes u33q65pnv {
-  0% { background-color: blueviolet; color: blueviolet; }
-  16.6666666667% { background-color: red; color: red; }
-  33.3333333333% { background-color: orange; color: orange; }
-  50% { background-color: gold; color: gold; }
-  66.6666666667% { background-color: green; color: green; }
-  83.3333333333% { background-color: blue; color: blue; }
-  100% { background-color: blueviolet; color: blueviolet; }
-}
-</pre>
-<pre>
-<strong>The Mixins</strong>
-<span>//  global context flags using wierd ☠️ names to minimize 
-//  chance of naming conflicts with other scss variables</span>
-$☠️--animation-timeline-duration: null;
-$☠️--animation-timeline-tweens  : null;
-
-<span>//  mixin to create an animation context for nested tweens
-//  used to calculate the total duration of the animation
-//  converting each tween delay into percentages </span>
-@mixin animation-timeline($name: unique-id()) {
-
-    <span>//  global context flag to sum up duration</span>
-    $☠️--animation-timeline-duration: 0s !global;    
-
-    <span>//  global context map to hold animation tweens</span>
-    $☠️--animation-timeline-tweens  : () !global;
-
-    <span>//  mixin content (the included tweens)</span>
-    @content;
-
-    <span>//  animation name and duration 
-    //  note! if no name is provided a unique id will be used
-    //  this allows you to create one-time-use animations without
-    //  having to deal with animation naming conflicts :-)</span>     
-    animation-name:     $name;
-    animation-duration: $☠️--animation-timeline-duration;
-
-    <span>//  create keyframes if duration is more than 0s</$span>
-    @if $☠️--animation-timeline-duration > 0s {
-        @keyframes #{$name} {
-            <span>//  loop through the included tweens </span>
-            @each $time, $props in $☠️--animation-timeline-tweens {
-                <span>//  calculate percentage based on total duration</span>
-                #{percentage($time/$☠️--animation-timeline-duration)}{ 
-                    <span>//  print out the tween properties</span>
-                    @each $prop, $value in $props {
-                        #{$prop}:$value;
-                    }
-                }
-            }
-        }
-    }
-
-    <span>//  reset global context flags</span>
-    $☠️--animation-timeline-duration: null !global;
-    $☠️--animation-timeline-tweens  : null !global;
-}
-
-
-<span>//  mixin to create tweens based on a delay and a map
-//  containing the the tween properties*
-//
-//  * using a map is not optimal – but for now you are not 
-//  able to save @content to variables :( 
-//</span>  
-@mixin tween($delay: 0s, $props: null){
-    <span>//  only do stuff if we are in a animation-timeline context</span>
-    @if $☠️--animation-timeline-tweens {
-        <span>//  increment the total animation duration by the the tween delay </span>
-        $☠️--animation-timeline-duration: $☠️--animation-timeline-duration + $delay !global;
-        <span>//  save current duration and tween props to the global tween map</span>
-        $☠️--animation-timeline-tweens: map-merge($☠️--animation-timeline-tweens, ($☠️--animation-timeline-duration: $props)) !global;
-    }
-}
-</pre>
+      </button>
+  </li>
+</ol>
