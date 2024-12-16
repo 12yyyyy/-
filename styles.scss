@@ -1,0 +1,137 @@
+// 全局变量，用于追踪动画的时间线总时长和所有关键帧
+$animation-timeline-duration: null !global;
+$animation-timeline-tweens: () !global;
+
+// 创建一个动画上下文，用于嵌套的 `tween` 混合
+@mixin animation-timeline($name: unique-id()) {
+    // 初始化全局变量
+    $animation-timeline-duration: 0s !global;
+    $animation-timeline-tweens: () !global;
+
+    // 包含在调用 `animation-timeline` 时传入的内容（即 `tween` 混合）
+    @content;
+
+    // 设置动画名称和持续时间
+    animation-name: $name;
+    animation-duration: $animation-timeline-duration;
+
+    // 如果总时长大于 0s，则创建关键帧
+    @if $animation-timeline-duration > 0s {
+        @keyframes #{$name} {
+            @each $time, $props in $animation-timeline-tweens {
+                // 计算每个 `tween` 在关键帧中的百分比位置
+                #{percentage($time / $animation-timeline-duration)} {
+                    @each $prop, $value in $props {
+                        #{$prop}: $value;
+                    }
+                }
+            }
+        }
+    }
+
+    // 重置全局变量
+    $animation-timeline-duration: null !global;
+    $animation-timeline-tweens: null !global;
+}
+
+// 创建基于延迟时间和属性映射的关键帧
+@mixin tween($delay: 0s, $props: null) {
+    @if $animation-timeline-tweens {
+        // 增加总的动画时间
+        $animation-timeline-duration: $animation-timeline-duration + $delay !global;
+        // 将当前时间和属性保存到全局 `tween` 映射中
+        $animation-timeline-tweens: map-merge($animation-timeline-tweens, ($animation-timeline-duration: $props)) !global;
+    }
+}
+
+// 应用动画到 body 元素
+body {
+    @include animation-timeline {
+        animation-iteration-count: infinite;
+        animation-fill-mode: forwards;
+        @include tween(0s, (background-color: blueviolet, color: blueviolet));
+        @include tween(3s, (background-color: red, color: red));
+        @include tween(3s, (background-color: orange, color: orange));
+        @include tween(3s, (background-color: gold, color: gold));
+        @include tween(3s, (background-color: green, color: green));
+        @include tween(3s, (background-color: blue, color: blue));
+        @include tween(3s, (background-color: blueviolet, color: blueviolet));
+    }
+}
+
+// 应用动画到 .hearts span 元素
+.hearts {
+    overflow: hidden;
+    height: 6em;
+
+    i {
+        font-size: 4em;
+        display: block;
+        line-height: 1.5;
+        margin: 0;
+        font-style: normal;
+        text-align: center;
+    }
+
+    span {
+        position: relative;
+        display: block;
+
+        @include animation-timeline(hearts) {
+            animation-fill-mode: forwards;
+            animation-iteration-count: infinite;
+            @include tween(600ms, (transform: translateY(-100% / 7 * 1))); // 滑动到红色心形
+            @include tween(2.4s, (transform: translateY(-100% / 7 * 1)));  // 暂停
+            @include tween(600ms, (transform: translateY(-100% / 7 * 2))); // 滑动到橙色心形
+            @include tween(2.4s, (transform: translateY(-100% / 7 * 2)));  // 暂停
+            @include tween(600ms, (transform: translateY(-100% / 7 * 3))); // 滑动到黄色心形
+            @include tween(2.4s, (transform: translateY(-100% / 7 * 3)));  // 暂停
+            @include tween(600ms, (transform: translateY(-100% / 7 * 4))); // 滑动到绿色心形
+            @include tween(2.4s, (transform: translateY(-100% / 7 * 4)));  // 暂停
+            @include tween(600ms, (transform: translateY(-100% / 7 * 5))); // 滑动到蓝色心形
+            @include tween(2.4s, (transform: translateY(-100% / 7 * 5)));  // 暂停
+            @include tween(600ms, (transform: translateY(-100% / 7 * 6))); // 滑动到紫色心形
+            @include tween(2.4s, (transform: translateY(-100% / 7 * 6)));  // 暂停
+            @include tween(0.1ms, (transform: translateY(-100% / 7 * 0))); // 跳转到紫色心形
+        }
+    }
+}
+
+// 基本样式规则
+html {
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+header {
+    background: rgba(white, 0.9);
+    padding: 1em;
+    color: inherit;
+    overflow: hidden;
+    transform: translate3d(0, 0, 0);
+}
+
+h1 {
+    font: 400 24px sans-serif;
+    margin-bottom: 0;
+}
+
+p {
+    font: 400 16px sans-serif;
+}
+
+pre {
+    font-size: 11px;
+    background: rgba(white, 0.7);
+    padding: 1em;
+    color: black;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+
+    span {
+        opacity: 0.7;
+    }
+}
